@@ -14,13 +14,10 @@
             --text-main: #ffffff;
             --text-muted: #8a99ad;
             --border: rgba(255, 255, 255, 0.08);
+            --cyan: #00f0ff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg-color);
@@ -28,12 +25,11 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(255, 51, 75, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.03) 0%, transparent 40%);
         }
 
-        /* Notice Banner */
         .site-notice {
             background-color: rgba(255, 204, 0, 0.1);
             color: #ffcc00;
@@ -47,21 +43,20 @@
 
         header {
             text-align: center;
-            padding: 4rem 1rem 2rem 1rem;
+            padding: 3rem 1rem 1.5rem;
             position: relative;
         }
 
-        /* Beta Badge Style */
         .beta-badge {
             position: absolute;
-            top: 2rem;
+            top: 1.5rem;
             right: 2rem;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.7rem;
             font-weight: 700;
             padding: 5px 12px;
             background: rgba(0, 240, 255, 0.1);
-            color: #00f0ff;
+            color: var(--cyan);
             border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 20px;
             letter-spacing: 2px;
@@ -71,18 +66,16 @@
         }
 
         @keyframes pulse-beta {
-            0% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); }
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); }
             50% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); }
-            100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); }
         }
 
         header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             font-weight: 900;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--text-main);
             text-shadow: 0 0 20px var(--accent-glow);
         }
 
@@ -93,283 +86,365 @@
 
         header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-top: 0.5rem;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        /* Filter Tab Menu */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 2rem 0 3rem 0;
-            padding: 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: var(--panel-bg);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 10px 22px;
-            border-radius: 6px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            background: var(--accent);
-            color: var(--text-main);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        /* Map Selection */
-        .map-selector-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 2rem 0 1rem 0;
-            padding: 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .map-btn {
-            background: var(--panel-bg);
-            border: 2px solid var(--border);
-            color: var(--text-muted);
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .map-btn:hover, .map-btn.active {
-            background: var(--accent);
-            color: var(--text-main);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .map-banner {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, rgba(255, 51, 75, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
-            background-size: cover;
-            background-position: center;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin: 0 0 2rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            overflow: hidden;
-        }
-
-        .map-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        .coming-soon {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        .coming-soon-title {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        /* Map Selection Grid */
+        /* ── Map Selection ── */
         .map-selection-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 1rem 1.5rem 2rem;
         }
 
-        .map-selection-container h2 {
+        .section-heading {
             text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
             letter-spacing: 2px;
         }
 
-        .map-selection-container p {
-            text-align: center;
+        .section-heading p {
             color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
         }
 
         .map-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
         }
 
         .map-card {
             position: relative;
-            height: 280px;
-            background: linear-gradient(135deg, rgba(255, 51, 75, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            height: 220px;
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--panel-bg);
         }
 
         .map-card img {
             position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.85;
-            transition: opacity 0.4s;
+            opacity: 0.55;
+            transition: opacity 0.35s, transform 0.35s;
         }
 
         .map-card:hover img {
-            opacity: 1;
+            opacity: 0.75;
+            transform: scale(1.04);
         }
 
         .map-card-overlay {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 2rem 1rem 1.5rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.95) 100%);
-            width: 100%;
-            transition: all 0.4s;
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            background: linear-gradient(180deg, transparent 30%, rgba(7, 9, 14, 0.95) 100%);
         }
 
-        .map-card:hover .map-card-overlay {
-            background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.98) 100%);
+        .map-card-top {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 3;
+        }
+
+        .map-status {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .map-status.live {
+            background: rgba(255, 51, 75, 0.2);
+            color: var(--accent);
+            border: 1px solid rgba(255, 51, 75, 0.4);
+        }
+
+        .map-status.soon {
+            background: rgba(138, 153, 173, 0.15);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
         }
 
         .map-card-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: 2px;
-            color: var(--text-main);
-            text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .map-card-count {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .map-card-stats {
+            display: flex;
+            gap: 0.75rem;
             margin-top: 0.5rem;
-            letter-spacing: 1px;
+            flex-wrap: wrap;
+        }
+
+        .map-stat {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .map-stat strong {
+            color: var(--text-main);
         }
 
         .map-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
+            transform: translateY(-5px);
+            border-color: rgba(255, 51, 75, 0.5);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 18px var(--accent-glow);
         }
 
-        /* Grid layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+        .map-card.disabled {
+            cursor: default;
+            opacity: 0.65;
+        }
+
+        .map-card.disabled:hover {
+            transform: none;
+            border-color: var(--border);
+            box-shadow: none;
+        }
+
+        /* ── Map View ── */
+        #content-wrapper { display: none; }
+
+        .map-view-header {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 0 2rem 3rem 2rem;
+            padding: 0 1.5rem;
         }
 
-        .grid.hidden {
-            display: none;
+        .back-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
         }
 
-        .map-section {
-            transition: opacity 0.3s ease;
+        .back-btn:hover {
+            background: var(--accent);
+            color: var(--text-main);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .map-section.hidden {
-            display: none;
+        .map-hero {
+            position: relative;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
         }
 
-        /* Cyber Card */
+        .map-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+        }
+
+        .map-hero-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(90deg, rgba(7, 9, 14, 0.85) 0%, transparent 70%);
+        }
+
+        .map-hero-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            letter-spacing: 3px;
+        }
+
+        .map-hero-count {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ── Filter Toolbar ── */
+        .filter-toolbar {
+            max-width: 1300px;
+            margin: 0 auto 1rem;
+            padding: 0 1.5rem;
+        }
+
+        .filter-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .filter-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: all 0.25s;
+            backdrop-filter: blur(10px);
+        }
+
+        .pill:hover, .pill.active {
+            background: var(--accent);
+            color: var(--text-main);
+            border-color: var(--accent);
+            box-shadow: 0 0 14px var(--accent-glow);
+        }
+
+        .pill.type-smoke.active { background: rgba(255, 51, 75, 0.85); }
+        .pill.type-molotov.active { background: rgba(255, 140, 0, 0.85); border-color: #ff8c00; box-shadow: 0 0 14px rgba(255, 140, 0, 0.3); }
+
+        .results-bar {
+            max-width: 1300px;
+            margin: 0 auto 1.25rem;
+            padding: 0 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .results-bar span { color: var(--accent); font-weight: 600; }
+
+        /* ── Lineup Grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .grid-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            transition: 0.4s;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             border-color: rgba(255, 51, 75, 0.4);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
         }
 
-        .card:hover::before {
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
+        .card.hidden { display: none; }
 
         .video-box {
             position: relative;
             width: 100%;
-            height: 190px;
-            background: #000;
+            aspect-ratio: 16 / 9;
+            background: #0a0c12;
             cursor: pointer;
+            overflow: hidden;
         }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-
-        .video-poster {
+        .video-box video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .video-box .video-player {
+            display: none;
+        }
+
+        .video-box.playing .video-thumb-wrap { display: none; }
+        .video-box.playing .video-player { display: block; }
+        .video-box.playing .play-button { display: none; }
+
+        .video-thumb-wrap {
+            position: absolute;
+            inset: 0;
+        }
+
+        .video-thumb-wrap video {
+            pointer-events: none;
+        }
+
+        .video-box.loading .video-thumb-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            animation: shimmer 1.4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .play-button {
@@ -377,73 +452,65 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 51, 75, 0.9);
-            border: none;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 51, 75, 0.92);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-            z-index: 10;
+            transition: all 0.25s;
+            z-index: 5;
+            padding-left: 3px;
         }
 
         .play-button:hover {
             background: var(--accent);
             transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        .video-box.playing .play-button,
-        .video-box.playing .video-poster {
-            display: none;
-        }
-
-        .video-box.playing video {
-            display: block;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
+        .card-body { padding: 1.1rem 1.25rem 1.25rem; }
 
         .card-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
+            gap: 0.5rem;
         }
 
         .badge {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: rgba(255, 51, 75, 0.1);
+            background: rgba(255, 51, 75, 0.12);
             color: var(--accent);
-            border: 1px solid rgba(255, 51, 75, 0.2);
+            border: 1px solid rgba(255, 51, 75, 0.25);
         }
 
         .badge.molotov {
-            background: rgba(255, 140, 0, 0.1);
+            background: rgba(255, 140, 0, 0.12);
             color: #ff8c00;
-            border-color: rgba(255, 140, 0, 0.2);
+            border-color: rgba(255, 140, 0, 0.25);
         }
 
-        .map-tag {
+        .site-tag {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 4px;
-            background: rgba(0, 240, 255, 0.1);
-            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.08);
+            color: var(--cyan);
             border: 1px solid rgba(0, 240, 255, 0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -451,23 +518,42 @@
 
         .card-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             letter-spacing: 0.5px;
+            line-height: 1.3;
         }
 
         .card-desc {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
         }
 
-        /* About Section */
+        /* ── Coming Soon ── */
+        .coming-soon {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: var(--text-muted);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .coming-soon-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .map-section.hidden { display: none; }
+
+        /* ── About / Submit / Footer ── */
         .about-section {
             max-width: 1300px;
-            margin: 2rem auto;
-            padding: 3rem 2rem;
+            margin: 1rem auto 0;
+            padding: 2.5rem 1.5rem;
             background: var(--panel-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -476,23 +562,22 @@
 
         .about-section h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
             letter-spacing: 1px;
-            color: var(--text-main);
         }
 
         .about-section p {
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-size: 0.95rem;
         }
 
         .about-links {
             display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
+            margin-top: 1.25rem;
             flex-wrap: wrap;
         }
 
@@ -501,7 +586,7 @@
             text-decoration: none;
             font-weight: 600;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 1px;
             transition: 0.2s;
         }
@@ -511,13 +596,12 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        /* Submit Panel */
         .submit-panel {
             max-width: 1300px;
-            margin: 2rem auto 5rem auto;
+            margin: 1.25rem auto 4rem;
             background: var(--panel-bg);
             border: 1px solid var(--border);
-            padding: 3rem;
+            padding: 2.5rem 1.5rem;
             border-radius: 16px;
             text-align: center;
             backdrop-filter: blur(10px);
@@ -525,14 +609,14 @@
 
         .submit-panel h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
             letter-spacing: 1px;
         }
 
         .submit-panel p {
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
 
@@ -542,28 +626,28 @@
             background: transparent;
             color: var(--text-main);
             border: 2px solid var(--accent);
-            padding: 12px 30px;
+            padding: 11px 28px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-decoration: none;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .submit-action:hover {
             background: var(--accent);
             box-shadow: 0 0 30px var(--accent);
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         footer {
             text-align: center;
             padding: 2rem;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-family: 'Orbitron', sans-serif;
             border-top: 1px solid var(--border);
             letter-spacing: 1px;
@@ -573,8 +657,11 @@
             .beta-badge {
                 position: static;
                 display: inline-block;
-                margin-bottom: 1rem;
+                margin-bottom: 0.75rem;
             }
+
+            .map-hero { height: 120px; }
+            .map-hero-text { padding: 1rem; }
         }
     </style>
 </head>
@@ -590,344 +677,337 @@
         <p>Pro CS2 Tactical Lineup Database</p>
     </header>
 
-    <!-- Map Selection Screen -->
+    <!-- Map Selection -->
     <div id="map-selection" class="map-selection-container">
-        <h2>SELECT A MAP</h2>
-        <p>Choose a map to view tactical lineups</p>
-        
-        <div class="map-grid">
-            <div class="map-card" onclick="selectMap('mirage', event)">
-                <img src="mirage.webp" alt="Mirage">
-                <div class="map-card-overlay">
-                    <div class="map-card-title">MIRAGE</div>
-                    <div class="map-card-count">9 lineups</div>
-                </div>
-            </div>
-
-            <div class="map-card" onclick="selectMap('dust2', event)">
-                <img src="dust2.webp" alt="Dust 2">
-                <div class="map-card-overlay">
-                    <div class="map-card-title">DUST 2</div>
-                    <div class="map-card-count">0 lineups</div>
-                </div>
-            </div>
-
-            <div class="map-card" onclick="selectMap('inferno', event)">
-                <img src="inferno.webp" alt="Inferno">
-                <div class="map-card-overlay">
-                    <div class="map-card-title">INFERNO</div>
-                    <div class="map-card-count">0 lineups</div>
-                </div>
-            </div>
-
-            <div class="map-card" onclick="selectMap('nuke', event)">
-                <img src="nuke.webp" alt="Nuke">
-                <div class="map-card-overlay">
-                    <div class="map-card-title">NUKE</div>
-                    <div class="map-card-count">0 lineups</div>
-                </div>
-            </div>
-
-            <div class="map-card" onclick="selectMap('ancient', event)">
-                <img src="ancient.webp" alt="Ancient">
-                <div class="map-card-overlay">
-                    <div class="map-card-title">ANCIENT</div>
-                    <div class="map-card-count">0 lineups</div>
-                </div>
-            </div>
+        <div class="section-heading">
+            <h2>SELECT A MAP</h2>
+            <p>Pick a map to browse smokes, molotovs &amp; utility lineups</p>
         </div>
+        <div class="map-grid" id="map-grid"></div>
     </div>
 
-    <!-- Content Wrapper (Hidden by default) -->
-    <div id="content-wrapper" style="display: none;">
-
-    <!-- Mirage Section -->
-    <div id="mirage-section" class="map-section">
-
-        <!-- Filters -->
-        <div class="filter-container">
-            <button class="tab-btn active" onclick="filterCards('all', event)">ALL TACTICS</button>
-            <button class="tab-btn" onclick="filterCards('asite', event)">A-SITE</button>
-            <button class="tab-btn" onclick="filterCards('mid', event)">MID / CON</button>
-            <button class="tab-btn" onclick="filterCards('bsite', event)">B-SITE</button>
-        </div>
-
-        <!-- Grid -->
-        <main class="grid" id="card-grid">
-        
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Ct-1.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Ct+1" class="video-poster" alt="ASite Ct 1">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
+    <!-- Map Utility View -->
+    <div id="content-wrapper">
+        <div class="map-view-header">
+            <button class="back-btn" id="back-btn">← BACK TO MAPS</button>
+            <div class="map-hero" id="map-hero">
+                <img id="map-hero-img" src="" alt="">
+                <div class="map-hero-text">
+                    <h2 id="map-hero-title"></h2>
+                    <div class="map-hero-count" id="map-hero-count"></div>
                 </div>
-                <div class="card-title">CT Spawn Lineup 01</div>
-                <div class="card-desc">Standard execution smoke blocking direct angles from CT base.</div>
             </div>
         </div>
 
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-CT-2.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+CT+2" class="video-poster" alt="ASite CT 2">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
+        <div id="mirage-section" class="map-section">
+            <div class="filter-toolbar">
+                <div class="filter-group">
+                    <div class="filter-label">Site</div>
+                    <div class="filter-pills" id="site-filters">
+                        <button class="pill active" data-filter="site" data-value="all">All Sites</button>
+                        <button class="pill" data-filter="site" data-value="asite">A-Site</button>
+                        <button class="pill" data-filter="site" data-value="mid">Mid / Con</button>
+                        <button class="pill" data-filter="site" data-value="bsite">B-Site</button>
+                    </div>
                 </div>
-                <div class="card-title">CT Spawn Lineup 02</div>
-                <div class="card-desc">Alternative trajectory for tighter control on ticket booth.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-CT-3.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+CT+3" class="video-poster" alt="ASite CT 3">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
+                <div class="filter-group">
+                    <div class="filter-label">Utility Type</div>
+                    <div class="filter-pills" id="type-filters">
+                        <button class="pill active" data-filter="type" data-value="all">All Types</button>
+                        <button class="pill type-smoke" data-filter="type" data-value="smoke">Smoke</button>
+                        <button class="pill type-molotov" data-filter="type" data-value="molotov">Molotov</button>
+                    </div>
                 </div>
-                <div class="card-title">CT Spawn Lineup 03</div>
-                <div class="card-desc">Advanced deep lineup for fast site entry strategies.</div>
             </div>
+            <div class="results-bar" id="results-bar"></div>
+            <main class="grid" id="card-grid"></main>
         </div>
 
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Jungle-1.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Jungle+1" class="video-poster" alt="ASite Jungle 1">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Jungle Control 01</div>
-                <div class="card-desc">Crucial utility block preventing crossfires from jungle.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Jungle-2.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Jungle+2" class="video-poster" alt="ASite Jungle 2">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Jungle Control 02</div>
-                <div class="card-desc">Secondary angle variant for team coordination.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Stairs-1.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Stairs+1" class="video-poster" alt="ASite Stairs 1">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Stairs Barrier 01</div>
-                <div class="card-desc">Isolates defenders holding high ground on stairs.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Stairs-2.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Stairs+2" class="video-poster" alt="ASite Stairs 2">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Stairs Barrier 02</div>
-                <div class="card-desc">Fast execution option straight from default T areas.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="mid">
-            <div class="video-box" data-video="ASite-Connector-1.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Connector+1" class="video-poster" alt="ASite Connector 1">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge">SMOKE</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Connector Cut-off</div>
-                <div class="card-desc">Stops rotations and vision coming from mid sector.</div>
-            </div>
-        </div>
-
-        <div class="card" data-cat="asite">
-            <div class="video-box" data-video="ASite-Sandwich-Molotov-1.mp4">
-                <img src="https://placehold.co/600x320/1a1a2e/ff334b?text=ASite+Sandwich+Molotov+1" class="video-poster" alt="ASite Sandwich Molotov 1">
-                <button class="play-button">▶</button>
-                <video controls preload="none" playsinline></video>
-            </div>
-            <div class="card-body">
-                <div class="card-meta">
-                    <span class="badge molotov">MOLOTOV</span>
-                    <span class="map-tag">Mirage</span>
-                </div>
-                <div class="card-title">Sandwich Cleanse</div>
-                <div class="card-desc">Flushes out hidden defenders holding close angles.</div>
-            </div>
-        </div>
-
-        </main>
+        <div id="dust2-section" class="map-section hidden"><div class="coming-soon"><div class="coming-soon-title">DUST 2</div><div>Coming Soon</div></div></div>
+        <div id="inferno-section" class="map-section hidden"><div class="coming-soon"><div class="coming-soon-title">INFERNO</div><div>Coming Soon</div></div></div>
+        <div id="nuke-section" class="map-section hidden"><div class="coming-soon"><div class="coming-soon-title">NUKE</div><div>Coming Soon</div></div></div>
+        <div id="ancient-section" class="map-section hidden"><div class="coming-soon"><div class="coming-soon-title">ANCIENT</div><div>Coming Soon</div></div></div>
     </div>
 
-    <!-- Coming Soon Sections -->
-    <div id="dust2-section" class="map-section hidden">
-        <div class="coming-soon">
-            <div class="coming-soon-title">🗺️ DUST 2</div>
-            <div>Coming Soon</div>
-        </div>
+    <!-- About & Submit (always visible on landing) -->
+    <div id="landing-footer">
+        <section class="about-section">
+            <h2>ABOUT GL1TCHS UTILITIES</h2>
+            <p>gl1tchs utilities is a professional community platform built for Counter-Strike 2 players to discover, learn, and share the most efficient map utility lineups. Master your strategies, execute cleaner takes, and elevate your gameplay.</p>
+            <div class="about-links">
+                <a href="https://www.youtube.com/@gl1tcho11" target="_blank" class="about-link-item">📺 YOUTUBE CHANNEL</a>
+                <a href="mailto:rsulovbabk3@gmail.com" class="about-link-item">📧 CONTACT: rsulovbabk3@gmail.com</a>
+            </div>
+        </section>
+        <section class="submit-panel">
+            <h3>HAVE A BETTER LINEUP?</h3>
+            <p>Found a unique utility throw or a faster lineup? Contribute to the database and help the community.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2usajjpT2UYZIuSwiv7wvf6S9P4NIxdVkjqakXCxZ7RLIbQ/viewform?usp=dialog" target="_blank" class="submit-action">SUBMIT UTILITY</a>
+        </section>
     </div>
 
-    <div id="inferno-section" class="map-section hidden">
-        <div class="coming-soon">
-            <div class="coming-soon-title">🗺️ INFERNO</div>
-            <div>Coming Soon</div>
-        </div>
-    </div>
-
-    <div id="nuke-section" class="map-section hidden">
-        <div class="coming-soon">
-            <div class="coming-soon-title">🗺️ NUKE</div>
-            <div>Coming Soon</div>
-        </div>
-    </div>
-
-    <div id="ancient-section" class="map-section hidden">
-        <div class="coming-soon">
-            <div class="coming-soon-title">🗺️ ANCIENT</div>
-            <div>Coming Soon</div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <section class="about-section">
-        <h2>ABOUT GL1TCHS UTILITIES</h2>
-        <p>gl1tchs utilities is a professional community platform built for Counter-Strike 2 players to discover, learn, and share the most efficient map utility lineups. Master your strategies, execute cleaner takes, and elevate your gameplay.</p>
-        <div class="about-links">
-            <a href="https://www.youtube.com/@gl1tcho11" target="_blank" class="about-link-item">📺 YOUTUBE CHANNEL</a>
-            <a href="mailto:rsulovbabk3@gmail.com" class="about-link-item">📧 CONTACT: rsulovbabk3@gmail.com</a>
-        </div>
-    </section>
-
-    <!-- Submit Panel -->
-    <section class="submit-panel">
-        <h3>HAVE A BETTER LINEUP?</h3>
-        <p>Found a unique utility throw or a faster lineup? Contribute to the database and help the community.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2usajjpT2UYZIuSwiv7wvf6S9P4NIxdVkjqakXCxZ7RLIbQ/viewform?usp=dialog" target="_blank" class="submit-action">SUBMIT UTILITY</a>
-    </section>
-
-    </div>
-
-    <footer>
-        &copy; 2026 GL1TCHS UTILITIES. ALL RIGHTS RESERVED.
-    </footer>
+    <footer>&copy; 2026 GL1TCHS UTILITIES. ALL RIGHTS RESERVED.</footer>
 
     <script>
-        function filterCards(category, event) {
-            const cards = document.querySelectorAll('.card');
-            const buttons = document.querySelectorAll('.tab-btn');
+        const SITE_LABELS = { asite: 'A-Site', mid: 'Mid / Con', bsite: 'B-Site' };
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        const MAPS = [
+            { id: 'mirage',  name: 'Mirage',  image: 'mirage.webp',  live: true },
+            { id: 'dust2',   name: 'Dust 2',  image: 'dust2.webp',   live: false },
+            { id: 'inferno', name: 'Inferno', image: 'inferno.webp', live: false },
+            { id: 'nuke',    name: 'Nuke',    image: 'nuke.webp',    live: false },
+            { id: 'ancient', name: 'Ancient', image: 'ancient.webp', live: false },
+        ];
 
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-cat') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+        const LINEUPS = {
+            mirage: [
+                { video: 'ASite-Ct-1.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 01',    desc: 'Standard execution smoke blocking direct angles from CT base.' },
+                { video: 'ASite-CT-2.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 02',    desc: 'Alternative trajectory for tighter control on ticket booth.' },
+                { video: 'ASite-CT-3.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 03',    desc: 'Advanced deep lineup for fast site entry strategies.' },
+                { video: 'ASite-Jungle-1.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 01',     desc: 'Crucial utility block preventing crossfires from jungle.' },
+                { video: 'ASite-Jungle-2.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 02',     desc: 'Secondary angle variant for team coordination.' },
+                { video: 'ASite-Stairs-1.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 01',     desc: 'Isolates defenders holding high ground on stairs.' },
+                { video: 'ASite-Stairs-2.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 02',     desc: 'Fast execution option straight from default T areas.' },
+                { video: 'ASite-Connector-1.mp4',       site: 'mid',   type: 'smoke',   title: 'Connector Cut-off',     desc: 'Stops rotations and vision coming from mid sector.' },
+                { video: 'ASite-Sandwich-Molotov-1.mp4', site: 'asite', type: 'molotov', title: 'Sandwich Cleanse',      desc: 'Flushes out hidden defenders holding close angles.' },
+            ],
+        };
+
+        let activeMap = null;
+        let activeSiteFilter = 'all';
+        let activeTypeFilter = 'all';
+        let currentlyPlaying = null;
+
+        function getMapStats(mapId) {
+            const lineups = LINEUPS[mapId] || [];
+            const smokes = lineups.filter(l => l.type === 'smoke').length;
+            const molotovs = lineups.filter(l => l.type === 'molotov').length;
+            return { total: lineups.length, smokes, molotovs };
+        }
+
+        function renderMapGrid() {
+            const grid = document.getElementById('map-grid');
+            grid.innerHTML = MAPS.map(map => {
+                const stats = getMapStats(map.id);
+                const statHtml = map.live
+                    ? `<span class="map-stat"><strong>${stats.total}</strong> lineups</span>
+                       <span class="map-stat"><strong>${stats.smokes}</strong> smokes</span>
+                       <span class="map-stat"><strong>${stats.molotovs}</strong> molotovs</span>`
+                    : `<span class="map-stat">No lineups yet</span>`;
+
+                return `
+                    <div class="map-card${map.live ? '' : ' disabled'}" data-map="${map.id}" tabindex="0" role="button" aria-label="Select ${map.name}">
+                        <img src="${map.image}" alt="${map.name}" loading="lazy">
+                        <div class="map-card-top">
+                            <span class="map-status ${map.live ? 'live' : 'soon'}">${map.live ? '● Live' : 'Soon'}</span>
+                        </div>
+                        <div class="map-card-overlay">
+                            <div class="map-card-title">${map.name.toUpperCase()}</div>
+                            <div class="map-card-stats">${statHtml}</div>
+                        </div>
+                    </div>`;
+            }).join('');
+
+            grid.querySelectorAll('.map-card:not(.disabled)').forEach(card => {
+                const open = () => selectMap(card.dataset.map);
+                card.addEventListener('click', open);
+                card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
             });
         }
 
-        // Map selection from grid
-        function selectMap(mapName, event) {
-            // Hide map selection screen
-            document.getElementById('map-selection').style.display = 'none';
-            
-            // Show content wrapper
-            document.getElementById('content-wrapper').style.display = 'block';
-            
-            // Hide all map sections
-            const sections = document.querySelectorAll('.map-section');
-            sections.forEach(section => section.classList.add('hidden'));
+        function renderLineupCards(mapId) {
+            const grid = document.getElementById('card-grid');
+            const lineups = LINEUPS[mapId] || [];
 
-            // Show selected map section
-            const activeSection = document.getElementById(mapName + '-section');
-            if (activeSection) {
-                activeSection.classList.remove('hidden');
+            grid.innerHTML = lineups.map((l, i) => `
+                <article class="card" data-site="${l.site}" data-type="${l.type}">
+                    <div class="video-box loading" data-video="${l.video}">
+                        <div class="video-thumb-wrap">
+                            <video class="video-thumb" muted playsinline preload="metadata" src="${l.video}"></video>
+                        </div>
+                        <video class="video-player" controls playsinline preload="none"></video>
+                        <button class="play-button" aria-label="Play ${l.title}">▶</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="badge${l.type === 'molotov' ? ' molotov' : ''}">${l.type}</span>
+                            <span class="site-tag">${SITE_LABELS[l.site]}</span>
+                        </div>
+                        <div class="card-title">${l.title}</div>
+                        <div class="card-desc">${l.desc}</div>
+                    </div>
+                </article>
+            `).join('');
+
+            initVideoThumbs();
+            initVideoPlayers();
+            applyFilters();
+        }
+
+        function initVideoThumbs() {
+            document.querySelectorAll('.video-thumb').forEach(thumb => {
+                const box = thumb.closest('.video-box');
+
+                const markReady = () => box.classList.remove('loading');
+
+                thumb.addEventListener('loadedmetadata', () => {
+                    const seekTo = Math.min(1.5, thumb.duration * 0.12);
+                    if (seekTo > 0) thumb.currentTime = seekTo;
+                    else markReady();
+                });
+
+                thumb.addEventListener('loadeddata', () => {
+                    if (thumb.readyState >= 2) markReady();
+                });
+
+                thumb.addEventListener('seeked', markReady, { once: true });
+
+                thumb.addEventListener('error', () => {
+                    markReady();
+                    thumb.style.background = 'linear-gradient(135deg, #1a1a2e, #0a0c12)';
+                });
+
+                if (thumb.readyState >= 2) markReady();
+            });
+        }
+
+        function initVideoPlayers() {
+            document.querySelectorAll('.video-box').forEach(box => {
+                const playBtn = box.querySelector('.play-button');
+                const player = box.querySelector('.video-player');
+                const src = box.dataset.video;
+
+                const startPlay = (e) => {
+                    if (e.target.closest('.video-player')) return;
+
+                    if (currentlyPlaying && currentlyPlaying !== box) {
+                        const prev = currentlyPlaying.querySelector('.video-player');
+                        prev.pause();
+                        prev.removeAttribute('src');
+                        prev.load();
+                        currentlyPlaying.classList.remove('playing');
+                    }
+
+                    if (!box.classList.contains('playing')) {
+                        player.src = src;
+                        player.load();
+                        player.play();
+                        box.classList.add('playing');
+                        currentlyPlaying = box;
+                    }
+                };
+
+                playBtn.addEventListener('click', startPlay);
+                box.addEventListener('click', startPlay);
+
+                player.addEventListener('ended', () => {
+                    box.classList.remove('playing');
+                    player.removeAttribute('src');
+                    player.load();
+                    if (currentlyPlaying === box) currentlyPlaying = null;
+                });
+            });
+        }
+
+        function applyFilters() {
+            const cards = document.querySelectorAll('#card-grid .card');
+            let visible = 0;
+
+            cards.forEach(card => {
+                const siteMatch = activeSiteFilter === 'all' || card.dataset.site === activeSiteFilter;
+                const typeMatch = activeTypeFilter === 'all' || card.dataset.type === activeTypeFilter;
+                const show = siteMatch && typeMatch;
+                card.classList.toggle('hidden', !show);
+                if (show) visible++;
+            });
+
+            const bar = document.getElementById('results-bar');
+            const total = cards.length;
+            bar.innerHTML = visible === total
+                ? `Showing <span>${visible}</span> lineup${visible !== 1 ? 's' : ''}`
+                : `Showing <span>${visible}</span> of ${total} lineups`;
+
+            let empty = document.getElementById('grid-empty');
+            if (visible === 0) {
+                if (!empty) {
+                    empty = document.createElement('div');
+                    empty.id = 'grid-empty';
+                    empty.className = 'grid-empty';
+                    empty.textContent = 'No lineups match these filters.';
+                    document.getElementById('card-grid').appendChild(empty);
+                }
+            } else if (empty) {
+                empty.remove();
+            }
+        }
+
+        function resetFilters() {
+            activeSiteFilter = 'all';
+            activeTypeFilter = 'all';
+            document.querySelectorAll('.filter-pills .pill').forEach(p => {
+                p.classList.toggle('active', p.dataset.value === 'all');
+            });
+        }
+
+        function selectMap(mapId) {
+            const map = MAPS.find(m => m.id === mapId);
+            if (!map || !map.live) return;
+
+            activeMap = mapId;
+
+            document.getElementById('map-selection').style.display = 'none';
+            document.getElementById('landing-footer').style.display = 'none';
+            document.getElementById('content-wrapper').style.display = 'block';
+
+            document.getElementById('map-hero-img').src = map.image;
+            document.getElementById('map-hero-img').alt = map.name;
+            document.getElementById('map-hero-title').textContent = map.name.toUpperCase();
+            document.getElementById('map-hero-count').textContent = `${getMapStats(mapId).total} LINEUPS AVAILABLE`;
+
+            document.querySelectorAll('.map-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(mapId + '-section').classList.remove('hidden');
+
+            resetFilters();
+            renderLineupCards(mapId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            if (currentlyPlaying) {
+                const prev = currentlyPlaying.querySelector('.video-player');
+                prev.pause();
+                currentlyPlaying.classList.remove('playing');
+                currentlyPlaying = null;
             }
 
-            // Reset filters to 'all'
-            const allButtons = document.querySelectorAll('.tab-btn');
-            allButtons.forEach(btn => btn.classList.remove('active'));
-            const firstBtn = document.querySelector('.tab-btn');
-            if (firstBtn) firstBtn.classList.add('active');
-        }
-
-        // Go back to map selection
-        function goBackToSelection() {
             document.getElementById('map-selection').style.display = 'block';
+            document.getElementById('landing-footer').style.display = 'block';
             document.getElementById('content-wrapper').style.display = 'none';
+            activeMap = null;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Click to play video functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoBoxes = document.querySelectorAll('.video-box');
-            
-            videoBoxes.forEach(box => {
-                box.addEventListener('click', function() {
-                    const video = this.querySelector('video');
-                    const videoSrc = this.getAttribute('data-video');
-                    
-                    if (!this.classList.contains('playing')) {
-                        // Load and play video
-                        video.src = videoSrc;
-                        video.load();
-                        video.play();
-                        this.classList.add('playing');
-                    } else {
-                        // Toggle pause/play
-                        if (video.paused) {
-                            video.play();
-                        } else {
-                            video.pause();
-                        }
-                    }
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMapGrid();
+
+            document.getElementById('back-btn').addEventListener('click', goBack);
+
+            document.querySelectorAll('.filter-pills').forEach(group => {
+                group.addEventListener('click', e => {
+                    const pill = e.target.closest('.pill');
+                    if (!pill) return;
+
+                    group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+
+                    if (pill.dataset.filter === 'site') activeSiteFilter = pill.dataset.value;
+                    if (pill.dataset.filter === 'type') activeTypeFilter = pill.dataset.value;
+
+                    applyFilters();
                 });
             });
         });
     </script>
 </body>
 </html>
+
