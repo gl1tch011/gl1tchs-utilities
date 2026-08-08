@@ -131,6 +131,171 @@
             transform: translateY(-2px);
         }
 
+        /* Map Selection */
+        .map-selector-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 2rem 0 1rem 0;
+            padding: 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .map-btn {
+            background: var(--panel-bg);
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .map-btn:hover, .map-btn.active {
+            background: var(--accent);
+            color: var(--text-main);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .map-banner {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(255, 51, 75, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 0 0 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .map-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .coming-soon-title {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Map Selection Grid */
+        .map-selection-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .map-selection-container h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .map-selection-container p {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .map-card {
+            position: relative;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(255, 51, 75, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .map-card img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: opacity 0.4s;
+        }
+
+        .map-card:hover img {
+            opacity: 1;
+        }
+
+        .map-card-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.95) 100%);
+            width: 100%;
+            transition: all 0.4s;
+        }
+
+        .map-card:hover .map-card-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 9, 14, 0.98) 100%);
+        }
+
+        .map-card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .map-card-count {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .map-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
+        }
+
         /* Grid layout */
         .grid {
             display: grid;
@@ -139,6 +304,18 @@
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 2rem 3rem 2rem;
+        }
+
+        .grid.hidden {
+            display: none;
+        }
+
+        .map-section {
+            transition: opacity 0.3s ease;
+        }
+
+        .map-section.hidden {
+            display: none;
         }
 
         /* Cyber Card */
@@ -413,16 +590,70 @@
         <p>Pro CS2 Tactical Lineup Database</p>
     </header>
 
-    <!-- Filters -->
-    <div class="filter-container">
-        <button class="tab-btn active" onclick="filterCards('all', event)">ALL TACTICS</button>
-        <button class="tab-btn" onclick="filterCards('asite', event)">A-SITE</button>
-        <button class="tab-btn" onclick="filterCards('mid', event)">MID / CON</button>
-        <button class="tab-btn" onclick="filterCards('bsite', event)">B-SITE</button>
+    <!-- Map Selection Screen -->
+    <div id="map-selection" class="map-selection-container">
+        <h2>SELECT A MAP</h2>
+        <p>Choose a map to view tactical lineups</p>
+        
+        <div class="map-grid">
+            <div class="map-card" onclick="selectMap('mirage', event)">
+                <img src="mirage.webp" alt="Mirage">
+                <div class="map-card-overlay">
+                    <div class="map-card-title">MIRAGE</div>
+                    <div class="map-card-count">9 lineups</div>
+                </div>
+            </div>
+
+            <div class="map-card" onclick="selectMap('dust2', event)">
+                <img src="dust2.webp" alt="Dust 2">
+                <div class="map-card-overlay">
+                    <div class="map-card-title">DUST 2</div>
+                    <div class="map-card-count">0 lineups</div>
+                </div>
+            </div>
+
+            <div class="map-card" onclick="selectMap('inferno', event)">
+                <img src="inferno.webp" alt="Inferno">
+                <div class="map-card-overlay">
+                    <div class="map-card-title">INFERNO</div>
+                    <div class="map-card-count">0 lineups</div>
+                </div>
+            </div>
+
+            <div class="map-card" onclick="selectMap('nuke', event)">
+                <img src="nuke.webp" alt="Nuke">
+                <div class="map-card-overlay">
+                    <div class="map-card-title">NUKE</div>
+                    <div class="map-card-count">0 lineups</div>
+                </div>
+            </div>
+
+            <div class="map-card" onclick="selectMap('ancient', event)">
+                <img src="ancient.webp" alt="Ancient">
+                <div class="map-card-overlay">
+                    <div class="map-card-title">ANCIENT</div>
+                    <div class="map-card-count">0 lineups</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Grid -->
-    <main class="grid" id="card-grid">
+    <!-- Content Wrapper (Hidden by default) -->
+    <div id="content-wrapper" style="display: none;">
+
+    <!-- Mirage Section -->
+    <div id="mirage-section" class="map-section">
+
+        <!-- Filters -->
+        <div class="filter-container">
+            <button class="tab-btn active" onclick="filterCards('all', event)">ALL TACTICS</button>
+            <button class="tab-btn" onclick="filterCards('asite', event)">A-SITE</button>
+            <button class="tab-btn" onclick="filterCards('mid', event)">MID / CON</button>
+            <button class="tab-btn" onclick="filterCards('bsite', event)">B-SITE</button>
+        </div>
+
+        <!-- Grid -->
+        <main class="grid" id="card-grid">
         
         <div class="card" data-cat="asite">
             <div class="video-box" data-video="ASite-Ct-1.mp4">
@@ -568,7 +799,38 @@
             </div>
         </div>
 
-    </main>
+        </main>
+    </div>
+
+    <!-- Coming Soon Sections -->
+    <div id="dust2-section" class="map-section hidden">
+        <div class="coming-soon">
+            <div class="coming-soon-title">🗺️ DUST 2</div>
+            <div>Coming Soon</div>
+        </div>
+    </div>
+
+    <div id="inferno-section" class="map-section hidden">
+        <div class="coming-soon">
+            <div class="coming-soon-title">🗺️ INFERNO</div>
+            <div>Coming Soon</div>
+        </div>
+    </div>
+
+    <div id="nuke-section" class="map-section hidden">
+        <div class="coming-soon">
+            <div class="coming-soon-title">🗺️ NUKE</div>
+            <div>Coming Soon</div>
+        </div>
+    </div>
+
+    <div id="ancient-section" class="map-section hidden">
+        <div class="coming-soon">
+            <div class="coming-soon-title">🗺️ ANCIENT</div>
+            <div>Coming Soon</div>
+        </div>
+    </div>
+
     <!-- About Section -->
     <section class="about-section">
         <h2>ABOUT GL1TCHS UTILITIES</h2>
@@ -585,6 +847,8 @@
         <p>Found a unique utility throw or a faster lineup? Contribute to the database and help the community.</p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2usajjpT2UYZIuSwiv7wvf6S9P4NIxdVkjqakXCxZ7RLIbQ/viewform?usp=dialog" target="_blank" class="submit-action">SUBMIT UTILITY</a>
     </section>
+
+    </div>
 
     <footer>
         &copy; 2026 GL1TCHS UTILITIES. ALL RIGHTS RESERVED.
@@ -605,6 +869,37 @@
                     card.style.display = 'none';
                 }
             });
+        }
+
+        // Map selection from grid
+        function selectMap(mapName, event) {
+            // Hide map selection screen
+            document.getElementById('map-selection').style.display = 'none';
+            
+            // Show content wrapper
+            document.getElementById('content-wrapper').style.display = 'block';
+            
+            // Hide all map sections
+            const sections = document.querySelectorAll('.map-section');
+            sections.forEach(section => section.classList.add('hidden'));
+
+            // Show selected map section
+            const activeSection = document.getElementById(mapName + '-section');
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+
+            // Reset filters to 'all'
+            const allButtons = document.querySelectorAll('.tab-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            const firstBtn = document.querySelector('.tab-btn');
+            if (firstBtn) firstBtn.classList.add('active');
+        }
+
+        // Go back to map selection
+        function goBackToSelection() {
+            document.getElementById('map-selection').style.display = 'block';
+            document.getElementById('content-wrapper').style.display = 'none';
         }
 
         // Click to play video functionality
