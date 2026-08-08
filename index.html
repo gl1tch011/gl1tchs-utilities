@@ -531,6 +531,114 @@
             line-height: 1.5;
         }
 
+        /* ── Favorites & Search ── */
+        .search-container {
+            max-width: 1300px;
+            margin: 0 auto 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(18, 22, 31, 0.95);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .card.favorited {
+            border-color: rgba(255, 51, 75, 0.6);
+            box-shadow: 0 0 15px rgba(255, 51, 75, 0.2);
+        }
+
+        .difficulty-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid;
+        }
+
+        .difficulty-badge.easy {
+            background: rgba(76, 175, 80, 0.12);
+            color: #4caf50;
+            border-color: rgba(76, 175, 80, 0.25);
+        }
+
+        .difficulty-badge.medium {
+            background: rgba(255, 193, 7, 0.12);
+            color: #ffc107;
+            border-color: rgba(255, 193, 7, 0.25);
+        }
+
+        .difficulty-badge.hard {
+            background: rgba(244, 67, 54, 0.12);
+            color: #f44336;
+            border-color: rgba(244, 67, 54, 0.25);
+        }
+
+        .view-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .copy-btn:hover {
+            color: var(--accent);
+            background: rgba(255, 51, 75, 0.1);
+        }
+
+        .copy-btn.copied {
+            color: #4caf50;
+        }
+
         /* ── Coming Soon ── */
         .coming-soon {
             text-align: center;
@@ -700,6 +808,9 @@
         </div>
 
         <div id="mirage-section" class="map-section">
+            <div class="search-container">
+                <input type="text" id="search-bar" class="search-bar" placeholder="Search lineups by name..." />
+            </div>
             <div class="filter-toolbar">
                 <div class="filter-group">
                     <div class="filter-label">Site</div>
@@ -761,22 +872,24 @@
 
         const LINEUPS = {
             mirage: [
-                { video: 'ASite-Ct-1.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 01',    desc: 'Standard execution smoke blocking direct angles from CT base.' },
-                { video: 'ASite-CT-2.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 02',    desc: 'Alternative trajectory for tighter control on ticket booth.' },
-                { video: 'ASite-CT-3.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 03',    desc: 'Advanced deep lineup for fast site entry strategies.' },
-                { video: 'ASite-Jungle-1.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 01',     desc: 'Crucial utility block preventing crossfires from jungle.' },
-                { video: 'ASite-Jungle-2.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 02',     desc: 'Secondary angle variant for team coordination.' },
-                { video: 'ASite-Stairs-1.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 01',     desc: 'Isolates defenders holding high ground on stairs.' },
-                { video: 'ASite-Stairs-2.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 02',     desc: 'Fast execution option straight from default T areas.' },
-                { video: 'ASite-Connector-1.mp4',       site: 'mid',   type: 'smoke',   title: 'Connector Cut-off',     desc: 'Stops rotations and vision coming from mid sector.' },
-                { video: 'ASite-Sandwich-Molotov-1.mp4', site: 'asite', type: 'molotov', title: 'Sandwich Cleanse',      desc: 'Flushes out hidden defenders holding close angles.' },
+                { video: 'ASite-Ct-1.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 01',    desc: 'Standard execution smoke blocking direct angles from CT base.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-CT-2.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 02',    desc: 'Alternative trajectory for tighter control on ticket booth.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-CT-3.mp4',              site: 'asite', type: 'smoke',   title: 'CT Spawn Lineup 03',    desc: 'Advanced deep lineup for fast site entry strategies.', difficulty: 'hard', views: 0 },
+                { video: 'ASite-Jungle-1.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 01',     desc: 'Crucial utility block preventing crossfires from jungle.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-Jungle-2.mp4',          site: 'asite', type: 'smoke',   title: 'Jungle Control 02',     desc: 'Secondary angle variant for team coordination.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-Stairs-1.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 01',     desc: 'Isolates defenders holding high ground on stairs.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-Stairs-2.mp4',          site: 'asite', type: 'smoke',   title: 'Stairs Barrier 02',     desc: 'Fast execution option straight from default T areas.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-Connector-1.mp4',       site: 'mid',   type: 'smoke',   title: 'Connector Cut-off',     desc: 'Stops rotations and vision coming from mid sector.', difficulty: 'easy', views: 0 },
+                { video: 'ASite-Sandwich-Molotov-1.mp4', site: 'asite', type: 'molotov', title: 'Sandwich Cleanse',      desc: 'Flushes out hidden defenders holding close angles.', difficulty: 'hard', views: 0 },
             ],
         };
 
         let activeMap = null;
         let activeSiteFilter = 'all';
         let activeTypeFilter = 'all';
+        let activeSearch = '';
         let currentlyPlaying = null;
+        let favorites = JSON.parse(localStorage.getItem('gl1tchs-favorites')) || [];
 
         function getMapStats(mapId) {
             const lineups = LINEUPS[mapId] || [];
@@ -820,7 +933,7 @@
             const lineups = LINEUPS[mapId] || [];
 
             grid.innerHTML = lineups.map((l, i) => `
-                <article class="card" data-site="${l.site}" data-type="${l.type}">
+                <article class="card${isFavorited(l.title) ? ' favorited' : ''}" data-site="${l.site}" data-type="${l.type}" data-search="${l.title.toLowerCase()} ${l.desc.toLowerCase()}" data-views="${l.views}">
                     <div class="video-box loading" data-video="${l.video}">
                         <div class="video-thumb-wrap">
                             <video class="video-thumb" muted playsinline preload="metadata" src="${l.video}"></video>
@@ -830,17 +943,29 @@
                     </div>
                     <div class="card-body">
                         <div class="card-meta">
-                            <span class="badge${l.type === 'molotov' ? ' molotov' : ''}">${l.type}</span>
-                            <span class="site-tag">${SITE_LABELS[l.site]}</span>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <span class="badge${l.type === 'molotov' ? ' molotov' : ''}">${l.type}</span>
+                                <span class="difficulty-badge ${l.difficulty}">${l.difficulty}</span>
+                            </div>
+                            <button class="favorite-btn" data-title="${l.title}" title="Add to favorites">☆</button>
                         </div>
                         <div class="card-title">${l.title}</div>
                         <div class="card-desc">${l.desc}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <span class="site-tag">${SITE_LABELS[l.site]}</span>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <span class="view-count">👁️ ${l.views}</span>
+                                <button class="copy-btn" data-title="${l.title}" title="Copy details">📋</button>
+                            </div>
+                        </div>
                     </div>
                 </article>
             `).join('');
 
             initVideoThumbs();
             initVideoPlayers();
+            initFavorites();
+            initCopy();
             applyFilters();
         }
 
@@ -909,6 +1034,55 @@
             });
         }
 
+        function isFavorited(title) {
+            return favorites.includes(title);
+        }
+
+        function toggleFavorite(title) {
+            if (isFavorited(title)) {
+                favorites = favorites.filter(f => f !== title);
+            } else {
+                favorites.push(title);
+            }
+            localStorage.setItem('gl1tchs-favorites', JSON.stringify(favorites));
+        }
+
+        function initFavorites() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const title = btn.dataset.title;
+                const isFav = isFavorited(title);
+                btn.textContent = isFav ? '★' : '☆';
+                btn.style.color = isFav ? 'var(--accent)' : 'var(--text-muted)';
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(title);
+                    btn.textContent = isFavorited(title) ? '★' : '☆';
+                    btn.style.color = isFavorited(title) ? 'var(--accent)' : 'var(--text-muted)';
+                    btn.closest('.card').classList.toggle('favorited');
+                });
+            });
+        }
+
+        function initCopy() {
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const card = btn.closest('.card');
+                    const title = card.querySelector('.card-title').textContent;
+                    const desc = card.querySelector('.card-desc').textContent;
+                    const site = card.querySelector('.site-tag').textContent;
+                    const text = `${title}\n${desc}\nSite: ${site}`;
+                    navigator.clipboard.writeText(text);
+                    btn.textContent = '✓';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = '📋';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+
         function applyFilters() {
             const cards = document.querySelectorAll('#card-grid .card');
             let visible = 0;
@@ -916,7 +1090,8 @@
             cards.forEach(card => {
                 const siteMatch = activeSiteFilter === 'all' || card.dataset.site === activeSiteFilter;
                 const typeMatch = activeTypeFilter === 'all' || card.dataset.type === activeTypeFilter;
-                const show = siteMatch && typeMatch;
+                const searchMatch = activeSearch === '' || card.dataset.search.includes(activeSearch.toLowerCase());
+                const show = siteMatch && typeMatch && searchMatch;
                 card.classList.toggle('hidden', !show);
                 if (show) visible++;
             });
@@ -992,6 +1167,14 @@
 
             document.getElementById('back-btn').addEventListener('click', goBack);
 
+            const searchBar = document.getElementById('search-bar');
+            if (searchBar) {
+                searchBar.addEventListener('input', (e) => {
+                    activeSearch = e.target.value;
+                    applyFilters();
+                });
+            }
+
             document.querySelectorAll('.filter-pills').forEach(group => {
                 group.addEventListener('click', e => {
                     const pill = e.target.closest('.pill');
@@ -1010,4 +1193,3 @@
     </script>
 </body>
 </html>
-
